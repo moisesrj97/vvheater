@@ -1,4 +1,4 @@
-#VVeather
+# VVeather
 
 VVeather is a weather application made with the following stack:
 
@@ -12,7 +12,7 @@ VVeather developing process has also included Husky for git hooks and GitHub Act
 
 VVeather is fully tested with JEST.
 
-##To run
+## To run
 
 ```
 npm install && npm run serve
