@@ -1,34 +1,19 @@
-# vveather
+#VVeather
 
-## Project setup
-```
-npm install
-```
+VVeather is a weather application made with the following stack:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Vue
+- Vuex
+- Vue-router
+- Firebase
+- OpenWeatherMap API
 
-### Compiles and minifies for production
-```
-npm run build
-```
+VVeather developing process has also included Husky for git hooks and GitHub Actions for continuous deployment.
 
-### Run your unit tests
-```
-npm run test:unit
-```
+VVeather is fully tested with JEST.
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
+##To run
 
-### Lints and fixes files
 ```
-npm run lint
+npm install && npm run serve
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
