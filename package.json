@@ -59,7 +59,10 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
-    "rules": {},
+    "rules": {
+      "comma-dangle": "off",
+      "camelcase": "warn"
+    },
     "overrides": [
       {
         "files": [
