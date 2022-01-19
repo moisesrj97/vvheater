@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "firebase": "^9.6.2",
     "husky": "^7.0.4",
@@ -58,7 +59,10 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
-    "rules": {},
+    "rules": {
+      "comma-dangle": "off",
+      "camelcase": "warn"
+    },
     "overrides": [
       {
         "files": [
