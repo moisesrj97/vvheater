@@ -8,11 +8,11 @@ import {
 
 const getWeather = async (city: string): Promise<IWeatherAPI> => {
   const { data: currentWeatherData } = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OPENWEATHER_API}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
   );
 
   const { data: oneCallWeatherData } = await axios.get(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&appid=${process.env.OPENWEATHER_API}`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
   );
 
   interface HourPredictionApiResponseI {
