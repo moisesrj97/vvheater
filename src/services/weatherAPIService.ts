@@ -6,6 +6,55 @@ import {
   WeatherI,
 } from '../interfaces/weatherAPI.interfaces';
 
+interface HourPredictionApiResponseI {
+  dt: number;
+  temp: number;
+  feels_like: number;
+  humidity: number;
+  dew_point: number;
+  uvi: number;
+  clouds: number;
+  visibility: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: WeatherI[];
+  pop: number;
+}
+
+interface DayPredictionAPIResponseI {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  moonrise: number;
+  moonset: number;
+  moon_phase: number;
+  temp: {
+    day: number;
+    min: number;
+    max: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  feels_like: {
+    day: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: WeatherI[];
+  clouds: number;
+  pop: number;
+  uvi: number;
+}
+
 const getWeather = async (city: string): Promise<IWeatherAPI> => {
   const { data: currentWeatherData } = await axios.get(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
@@ -14,55 +63,6 @@ const getWeather = async (city: string): Promise<IWeatherAPI> => {
   const { data: oneCallWeatherData } = await axios.get(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
   );
-
-  interface HourPredictionApiResponseI {
-    dt: number;
-    temp: number;
-    feels_like: number;
-    humidity: number;
-    dew_point: number;
-    uvi: number;
-    clouds: number;
-    visibility: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust: number;
-    weather: WeatherI[];
-    pop: number;
-  }
-
-  interface DayPredictionAPIResponseI {
-    dt: number;
-    sunrise: number;
-    sunset: number;
-    moonrise: number;
-    moonset: number;
-    moon_phase: number;
-    temp: {
-      day: number;
-      min: number;
-      max: number;
-      night: number;
-      eve: number;
-      morn: number;
-    };
-    feels_like: {
-      day: number;
-      night: number;
-      eve: number;
-      morn: number;
-    };
-    pressure: number;
-    humidity: number;
-    dew_point: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust: number;
-    weather: WeatherI[];
-    clouds: number;
-    pop: number;
-    uvi: number;
-  }
 
   return {
     location: currentWeatherData.name,
@@ -113,3 +113,5 @@ const getWeather = async (city: string): Promise<IWeatherAPI> => {
     ),
   };
 };
+
+export default getWeather;
