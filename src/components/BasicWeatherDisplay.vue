@@ -26,6 +26,9 @@ export default defineComponent({
       this.weatherData = await getWeather(newLocationName);
     },
   },
+  async beforeMount() {
+    this.weatherData = await getWeather(this.locationName);
+  },
 });
 </script>
 
