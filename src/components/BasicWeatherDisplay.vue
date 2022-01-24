@@ -12,7 +12,10 @@ import getWeather from '@/services/weatherAPIService';
 export default defineComponent({
   name: 'BasicWeatherDisplay',
   props: {
-    msg: String,
+    locationName: {
+      required: true,
+      type: String,
+    },
   },
   data() {
     return {
@@ -20,7 +23,7 @@ export default defineComponent({
     };
   },
   async beforeMount() {
-    this.weatherData = await getWeather('Madrid');
+    this.weatherData = await getWeather(this.locationName);
   },
 });
 </script>

@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <SearchBar />
-    <BasicWeatherDisplay msg="Welcome to VVeather" />
+    <BasicWeatherDisplay :location-name="locationName" />
   </div>
 </template>
 
@@ -16,6 +16,11 @@ export default defineComponent({
   components: {
     BasicWeatherDisplay,
     SearchBar,
+  },
+  data() {
+    return {
+      locationName: 'Madrid',
+    };
   },
 });
 </script>
