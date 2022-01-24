@@ -47,11 +47,11 @@ export interface IWeatherAPI {
     icon: string;
   };
   currentTempAndHumidity: {
-    temp: string;
-    feelsLike: string;
-    tempMin: string;
-    tempMax: string;
-    humidity: string;
+    temp: number;
+    feelsLike: number;
+    tempMin: number;
+    tempMax: number;
+    humidity: number;
   };
   currentSunrise: number;
   currentSunset: number;
