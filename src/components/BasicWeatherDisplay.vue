@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <p>{{ weatherData }}</p>
   </div>
 </template>
@@ -22,8 +21,10 @@ export default defineComponent({
       weatherData: {},
     };
   },
-  async beforeMount() {
-    this.weatherData = await getWeather(this.locationName);
+  watch: {
+    async locationName(newLocationName: string) {
+      this.weatherData = await getWeather(newLocationName);
+    },
   },
 });
 </script>

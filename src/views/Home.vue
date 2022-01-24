@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <SearchBar />
+    <SearchBar v-on:emitInput="setLocation" />
     <BasicWeatherDisplay :location-name="locationName" />
   </div>
 </template>
@@ -21,6 +21,11 @@ export default defineComponent({
     return {
       locationName: 'Madrid',
     };
+  },
+  methods: {
+    setLocation(locationName: string) {
+      this.locationName = locationName;
+    },
   },
 });
 </script>

@@ -1,6 +1,7 @@
 <template>
-  <form>
+  <form @submit.prevent="emitLocation">
     <input v-model="inputValue" placeholder="Enter some location..." />
+    <button type="submit">Search</button>
   </form>
 </template>
 <script lang="ts">
@@ -12,6 +13,11 @@ export default defineComponent({
     return {
       inputValue: '',
     };
+  },
+  methods: {
+    emitLocation() {
+      this.$emit('emitInput', this.inputValue);
+    },
   },
 });
 </script>
