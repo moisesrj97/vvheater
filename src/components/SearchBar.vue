@@ -1,6 +1,6 @@
 <template>
   <form>
-    <input v-bind="inputValue" placeholder="Enter some location..." />
+    <input v-model="inputValue" placeholder="Enter some location..." />
   </form>
 </template>
 <script lang="ts">
