@@ -1,12 +1,24 @@
 import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import BasicWeatherDisplay from '@/components/BasicWeatherDisplay.vue';
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg },
+jest.mock('@/services/weatherAPIService.ts', () => {
+  return () => {
+    return Promise.resolve({ location: 'Barcelona' });
+  };
+});
+
+describe('Given BasicWeatherDisplay.vue', () => {
+  describe('When some location is passed as prop', () => {
+    it('Should fetch data of that location', async () => {
+      const locationName = 'Barcelona';
+
+      const wrapper = shallowMount(BasicWeatherDisplay, {
+        props: { locationName },
+      });
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.text()).toMatch(locationName);
+      });
     });
-    expect(wrapper.text()).toMatch(msg);
   });
 });
