@@ -19,13 +19,25 @@ export default defineComponent({
   },
   data() {
     return {
-      locationName: 'Madrid',
+      locationName: '',
     };
   },
   methods: {
     setLocation(locationName: string) {
       this.locationName = locationName;
     },
+  },
+  beforeMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setLocation(
+          `${position.coords.latitude} , ${position.coords.longitude}`
+        );
+      },
+      (error) => {
+        throw new Error(`Geolocation failed. Error: ${error}`);
+      }
+    );
   },
 });
 </script>
