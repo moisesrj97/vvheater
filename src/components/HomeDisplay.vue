@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import getWeather from '@/services/weatherAPIService';
 
 export default defineComponent({
-  name: 'BasicWeatherDisplay',
+  name: 'HomeDisplay',
   props: {
     locationName: {
       required: true,

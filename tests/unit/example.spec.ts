@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import BasicWeatherDisplay from '@/components/BasicWeatherDisplay.vue';
+import HomeDisplay from '@/components/HomeDisplay.vue';
 
 jest.mock('@/services/weatherAPIService.ts', () => {
   return () => {
@@ -7,12 +7,12 @@ jest.mock('@/services/weatherAPIService.ts', () => {
   };
 });
 
-describe('Given BasicWeatherDisplay.vue', () => {
+describe('Given HomeDisplay.vue', () => {
   describe('When some location is passed as prop', () => {
     it('Should fetch data of that location', async () => {
       const locationName = 'Barcelona';
 
-      const wrapper = shallowMount(BasicWeatherDisplay, {
+      const wrapper = shallowMount(HomeDisplay, {
         props: { locationName },
       });
 
