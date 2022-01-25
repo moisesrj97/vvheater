@@ -58,7 +58,6 @@ interface DayPredictionAPIResponseI {
 const getWeather = async (city: string): Promise<IWeatherAPI> => {
   let currentWeatherData: any;
   const splitInput: string[] = city.split(' ');
-  console.log(splitInput);
 
   if (splitInput.length === 3) {
     ({ data: currentWeatherData } = await axios.get(
@@ -69,8 +68,6 @@ const getWeather = async (city: string): Promise<IWeatherAPI> => {
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
     ));
   }
-
-  console.log(currentWeatherData);
 
   const { data: oneCallWeatherData } = await axios.get(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
