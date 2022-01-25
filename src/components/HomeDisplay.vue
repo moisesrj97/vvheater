@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <p>{{ weatherData }}</p>
+    <div v-if="loading">
+      <p>{{ weatherData }}</p>
+    </div>
+    <div v-else><p>Loading</p></div>
   </div>
 </template>
 
@@ -28,6 +31,11 @@ export default defineComponent({
   },
   async beforeMount() {
     this.weatherData = await getWeather(this.locationName);
+  },
+  computed: {
+    loading() {
+      return JSON.stringify(this.weatherData) !== '{}';
+    },
   },
 });
 </script>
