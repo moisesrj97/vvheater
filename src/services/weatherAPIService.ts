@@ -59,7 +59,7 @@ const getWeather = async (city: string): Promise<IWeatherAPI> => {
   let currentWeatherData: any;
   const splitInput: string[] = city.split(' ');
 
-  if (splitInput.length === 3) {
+  if (splitInput.some((e) => !Object.is(+e, NaN))) {
     ({ data: currentWeatherData } = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${splitInput[0]}&lon=${splitInput[2]}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
     ));
