@@ -30,7 +30,9 @@ export default defineComponent({
     },
   },
   async beforeMount() {
-    this.weatherData = await getWeather(this.locationName);
+    if (this.locationName !== '') {
+      this.weatherData = await getWeather(this.locationName);
+    }
   },
   computed: {
     loading() {
