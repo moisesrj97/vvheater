@@ -61,16 +61,16 @@ const getWeather = async (city: string): Promise<IWeatherAPI> => {
 
   if (splitInput.some((e) => !Object.is(+e, NaN))) {
     ({ data: currentWeatherData } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${splitInput[0]}&lon=${splitInput[2]}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${splitInput[0]}&lon=${splitInput[2]}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
     ));
   } else {
     ({ data: currentWeatherData } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
     ));
   }
 
   const { data: oneCallWeatherData } = await axios.get(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
+    `https://api.openweathermap.org/data/2.5/onecall?units=metric&lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&appid=${process.env.VUE_APP_OPENWEATHER_API}`
   );
 
   return {
