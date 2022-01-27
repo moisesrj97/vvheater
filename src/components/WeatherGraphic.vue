@@ -3,6 +3,7 @@
     <apexchart
       width="1000"
       type="line"
+      ref="weatherChart"
       :options="options"
       :series="series"
       @markerClick="click"
@@ -21,6 +22,16 @@ export default defineComponent({
       required: true,
     },
   },
+  watch: {
+    chartData() {
+      this.$refs.weatherChart.updateSeries([
+        {
+          name: 'temperature',
+          data: this.chartData.nextTemps,
+        },
+      ]);
+    },
+  },
   data() {
     return {
       options: {
@@ -32,6 +43,9 @@ export default defineComponent({
           zoom: {
             enabled: false,
           },
+        },
+        noData: {
+          text: 'Loading...',
         },
         xaxis: {
           categories: this.chartData.nextHours,
