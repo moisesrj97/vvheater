@@ -45,7 +45,7 @@ export default defineComponent({
           },
         },
         noData: {
-          text: 'Loading...',
+          text: 'Loading weather info...',
         },
         xaxis: {
           categories: this.chartData.nextHours,
