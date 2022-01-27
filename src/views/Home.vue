@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
     <SearchBar v-on:emitInput="setLocation" />
     <HomeDisplay :location-name="locationName" />
   </div>
