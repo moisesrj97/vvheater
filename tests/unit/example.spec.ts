@@ -3,7 +3,7 @@ import HomeDisplay from '@/components/HomeDisplay.vue';
 
 jest.mock('@/services/weatherAPIService.ts', () => {
   return () => {
-    return Promise.resolve({ location: 'Barcelona' });
+    return Promise.resolve({ location: 'Barcelona', nextHoursPrediction: [] });
   };
 });
 
