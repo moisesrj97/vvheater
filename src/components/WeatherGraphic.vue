@@ -24,7 +24,8 @@ export default defineComponent({
   },
   watch: {
     chartData() {
-      this.$refs.weatherChart.updateSeries([
+      const chart: any = this.$refs.weatherChart;
+      chart.updateSeries([
         {
           name: 'temperature',
           data: this.chartData.nextTemps,
@@ -69,9 +70,10 @@ export default defineComponent({
     };
   },
   methods: {
-    click: (event, chartContext, { seriesIndex, dataPointIndex, config }) => {
+    // Commented for deploy
+    /* click: (event, chartContext, { seriesIndex, dataPointIndex, config }) => {
       console.log({ seriesIndex, dataPointIndex, config });
-    },
+    }, */
   },
 });
 </script>
