@@ -48,17 +48,24 @@ export default defineComponent({
       return JSON.stringify(this.weatherData) !== '{}';
     },
     chartData() {
-      const currentHour = new Date(new Date(0).setUTCSeconds(1643295835))
+      const currentHour = new Date(
+        new Date(0).setUTCSeconds(this.weatherData.petitionTimestamp)
+      )
         .toLocaleTimeString()
         .split(':')[0];
-      const nextHours: number[] = [];
+      const nextHours: string[] = [];
 
       for (let i = 0; i < 48; i += 1) {
         let hour = +currentHour + i;
+        let days = 0;
         while (hour > 24) {
+          days += 1;
           hour -= 24;
         }
-        nextHours.push(hour);
+        const daysString = `+${days}`;
+        nextHours.push(
+          hour.toString().concat(`h ${days > 0 ? daysString : ''}`)
+        );
       }
 
       const nextTemps = this.weatherData.nextHoursPrediction.map(

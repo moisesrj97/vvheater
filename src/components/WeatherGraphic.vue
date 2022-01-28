@@ -1,7 +1,7 @@
 <template>
   <div>
     <apexchart
-      width="1000"
+      width="100%"
       type="line"
       ref="weatherChart"
       :options="options"
@@ -36,6 +36,9 @@ export default defineComponent({
   data() {
     return {
       options: {
+        theme: {
+          mode: 'light',
+        },
         chart: {
           id: 'vuechart-example',
           toolbar: {
@@ -50,6 +53,16 @@ export default defineComponent({
         },
         xaxis: {
           categories: this.chartData.nextHours,
+          tickAmount: 10,
+          tooltip: {
+            enabled: false,
+          },
+        },
+        yaxis: {
+          show: false,
+          labels: {
+            formatter: (e: number) => `${e} ºC`,
+          },
         },
         stroke: {
           curve: 'smooth',
@@ -59,6 +72,22 @@ export default defineComponent({
         },
         tooltip: {
           enabled: true,
+          followCursor: true,
+          x: {
+            show: true,
+          },
+          y: {
+            title: {
+              formatter: () => '',
+            },
+          },
+          marker: {
+            show: false,
+          },
+        },
+        colors: ['#42b983'],
+        grid: {
+          show: false,
         },
       },
       series: [
