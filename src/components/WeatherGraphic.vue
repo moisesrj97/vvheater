@@ -6,7 +6,7 @@
       ref="weatherChart"
       :options="options"
       :series="series"
-      @markerClick="click"
+      @markerClick="(a, b, c) => click(a, b, c, this)"
     ></apexchart>
   </div>
 </template>
@@ -99,10 +99,14 @@ export default defineComponent({
     };
   },
   methods: {
-    // Commented for deploy
-    /* click: (event, chartContext, { seriesIndex, dataPointIndex, config }) => {
-      console.log({ seriesIndex, dataPointIndex, config });
-    }, */
+    click: (
+      event: any,
+      chartContext: any,
+      { dataPointIndex }: { dataPointIndex: number },
+      that: any
+    ) => {
+      that.$emit('emitTimeMarker', dataPointIndex);
+    },
   },
 });
 </script>
