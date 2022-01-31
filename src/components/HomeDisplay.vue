@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
     <div v-if="loading">
-      <WeatherGraphic :chartData="chartData" />
+      <WeatherGraphic
+        :chartData="chartData"
+        v-on:emitTimeMarker="setTimeMarker"
+      />
       <BasicDisplay :tempData="tempData" />
 
       <p>{{ weatherData }}</p>
@@ -46,6 +49,11 @@ export default defineComponent({
     if (this.locationName !== '') {
       this.weatherData = await getWeather(this.locationName);
     }
+  },
+  methods: {
+    setTimeMarker(timeMarker: number) {
+      this.timeMarker = timeMarker;
+    },
   },
   computed: {
     loading() {
