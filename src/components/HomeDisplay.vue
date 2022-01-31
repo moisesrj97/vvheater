@@ -2,6 +2,7 @@
   <div class="hello">
     <div v-if="loading">
       <WeatherGraphic :chartData="chartData" />
+      <BasicDisplay :tempData="tempData" />
 
       <p>{{ weatherData }}</p>
     </div>
@@ -13,6 +14,7 @@
 import { defineComponent } from 'vue';
 import getWeather from '@/services/weatherAPIService';
 import WeatherGraphic from '@/components/WeatherGraphic.vue';
+import BasicDisplay from '@/components/BasicDisplay.vue';
 import { IWeatherAPI } from '@/interfaces/weatherAPI.interfaces';
 
 interface DataObject {
@@ -21,7 +23,7 @@ interface DataObject {
 
 export default defineComponent({
   name: 'HomeDisplay',
-  components: { WeatherGraphic },
+  components: { WeatherGraphic, BasicDisplay },
   props: {
     locationName: {
       required: true,
@@ -75,6 +77,15 @@ export default defineComponent({
       return {
         nextHours,
         nextTemps,
+      };
+    },
+    tempData() {
+      return {
+        time: this.weatherData.petitionTimestamp,
+        weather: this.weatherData.currentWeather,
+        tempAndHumidity: this.weatherData.currentTempAndHumidity,
+        sunrise: this.weatherData.currentSunrise,
+        sunset: this.weatherData.currentSunset,
       };
     },
   },
