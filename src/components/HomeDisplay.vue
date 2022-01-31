@@ -19,6 +19,7 @@ import { IWeatherAPI } from '@/interfaces/weatherAPI.interfaces';
 
 interface DataObject {
   weatherData: IWeatherAPI;
+  timeMarker: number;
 }
 
 export default defineComponent({
@@ -33,6 +34,7 @@ export default defineComponent({
   data(): DataObject {
     return {
       weatherData: {} as IWeatherAPI,
+      timeMarker: 0,
     };
   },
   watch: {
@@ -80,11 +82,26 @@ export default defineComponent({
       };
     },
     tempData() {
+      if (this.timeMarker === 0) {
+        return {
+          time: this.weatherData.petitionTimestamp,
+          weather: this.weatherData.currentWeather,
+          tempAndHumidity: this.weatherData.currentTempAndHumidity,
+          sunrise: this.weatherData.currentSunrise,
+          sunset: this.weatherData.currentSunset,
+        };
+      }
       return {
-        time: this.weatherData.petitionTimestamp,
-        weather: this.weatherData.currentWeather,
-        tempAndHumidity: this.weatherData.currentTempAndHumidity,
-        sunrise: this.weatherData.currentSunrise,
+        time: this.weatherData.nextHoursPrediction[this.timeMarker].dt,
+        weather: this.weatherData.nextHoursPrediction[this.timeMarker].weather,
+        tempAndHumidity: {
+          temp: this.weatherData.nextHoursPrediction[this.timeMarker].temp,
+          feelsLike:
+            this.weatherData.nextHoursPrediction[this.timeMarker].feelsLike,
+          humidity:
+            this.weatherData.nextHoursPrediction[this.timeMarker].humidity,
+        },
+        sunrise: this.weatherData.currentSunset,
         sunset: this.weatherData.currentSunset,
       };
     },
