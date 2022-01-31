@@ -1,6 +1,14 @@
 <template>
   <h3>{{ time }} {{ capitalizedWeather }}</h3>
   <img :src="iconSrc" :alt="tempData.weather.description.concat(' icon')" />
+  <p>
+    Current temp: {{ tempData.tempAndHumidity.temp }}ºC ({{
+      tempData.tempAndHumidity.feelsLike
+    }}ºC)
+  </p>
+  <p>Current humidity: {{ tempData.tempAndHumidity.humidity }}%</p>
+  <p>Sunrise: {{ sunriseTime }}</p>
+  <p>Sunset: {{ sunsetTime }}</p>
 </template>
 
 <script lang="ts">
@@ -25,7 +33,20 @@ export default defineComponent({
         .splice(0, 2)
         .join(':');
     },
-
+    sunriseTime() {
+      return new Date(new Date(0).setUTCSeconds(this.tempData.sunrise))
+        .toLocaleTimeString()
+        .split(':')
+        .splice(0, 2)
+        .join(':');
+    },
+    sunsetTime() {
+      return new Date(new Date(0).setUTCSeconds(this.tempData.sunset))
+        .toLocaleTimeString()
+        .split(':')
+        .splice(0, 2)
+        .join(':');
+    },
     capitalizedWeather() {
       const weather = this.tempData.weather.description;
       return weather.charAt(0).toUpperCase() + weather.slice(1);
