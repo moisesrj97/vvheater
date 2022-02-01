@@ -1,14 +1,13 @@
 <template>
   <div class="hello">
     <div v-if="loading">
+      <h2>{{ weatherData.location }}({{ weatherData.country }})</h2>
       <WeatherGraphic
         :chartData="chartData"
         v-on:emitTimeMarker="setTimeMarker"
       />
       <BasicDisplay :tempData="tempData" />
       <NextWeekDisplay :nextWeekPrediction="weatherData.nextWeekPrediction" />
-
-      <p>{{ weatherData }}</p>
     </div>
     <div v-else><p>Loading</p></div>
   </div>
