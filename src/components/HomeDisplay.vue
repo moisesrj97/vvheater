@@ -6,6 +6,7 @@
         v-on:emitTimeMarker="setTimeMarker"
       />
       <BasicDisplay :tempData="tempData" />
+      <NextWeekDisplay :nextWeekPrediction="weatherData.nextWeekPrediction" />
 
       <p>{{ weatherData }}</p>
     </div>
@@ -18,6 +19,7 @@ import { defineComponent } from 'vue';
 import getWeather from '@/services/weatherAPIService';
 import WeatherGraphic from '@/components/WeatherGraphic.vue';
 import BasicDisplay from '@/components/BasicDisplay.vue';
+import NextWeekDisplay from '@/components/NextWeekDisplay.vue';
 import { IWeatherAPI } from '@/interfaces/weatherAPI.interfaces';
 
 interface DataObject {
@@ -27,7 +29,7 @@ interface DataObject {
 
 export default defineComponent({
   name: 'HomeDisplay',
-  components: { WeatherGraphic, BasicDisplay },
+  components: { WeatherGraphic, BasicDisplay, NextWeekDisplay },
   props: {
     locationName: {
       required: true,
