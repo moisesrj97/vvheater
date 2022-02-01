@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
     <div v-if="loading">
+      <h2>{{ weatherData.location }}({{ weatherData.country }})</h2>
       <WeatherGraphic
         :chartData="chartData"
         v-on:emitTimeMarker="setTimeMarker"
       />
       <BasicDisplay :tempData="tempData" />
-
-      <p>{{ weatherData }}</p>
+      <NextWeekDisplay :nextWeekPrediction="weatherData.nextWeekPrediction" />
     </div>
     <div v-else><p>Loading</p></div>
   </div>
@@ -18,6 +18,7 @@ import { defineComponent } from 'vue';
 import getWeather from '@/services/weatherAPIService';
 import WeatherGraphic from '@/components/WeatherGraphic.vue';
 import BasicDisplay from '@/components/BasicDisplay.vue';
+import NextWeekDisplay from '@/components/NextWeekDisplay.vue';
 import { IWeatherAPI } from '@/interfaces/weatherAPI.interfaces';
 
 interface DataObject {
@@ -27,7 +28,7 @@ interface DataObject {
 
 export default defineComponent({
   name: 'HomeDisplay',
-  components: { WeatherGraphic, BasicDisplay },
+  components: { WeatherGraphic, BasicDisplay, NextWeekDisplay },
   props: {
     locationName: {
       required: true,
