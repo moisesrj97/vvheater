@@ -37,7 +37,7 @@ export default defineComponent({
     return {
       options: {
         theme: {
-          mode: 'light',
+          mode: 'dark',
         },
         chart: {
           id: 'vuechart-example',
@@ -46,6 +46,9 @@ export default defineComponent({
           },
           zoom: {
             enabled: false,
+          },
+          background: {
+            show: false,
           },
         },
         noData: {
@@ -85,7 +88,7 @@ export default defineComponent({
             show: false,
           },
         },
-        colors: ['#42b983'],
+        colors: ['#FFF'],
         grid: {
           show: false,
         },
