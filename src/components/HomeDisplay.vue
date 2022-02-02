@@ -112,7 +112,7 @@ export default defineComponent({
           humidity:
             this.weatherData.nextHoursPrediction[this.timeMarker].humidity,
         },
-        sunrise: this.weatherData.currentSunset,
+        sunrise: this.weatherData.currentSunrise,
         sunset: this.weatherData.currentSunset,
       };
     },
