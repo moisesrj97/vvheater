@@ -69,6 +69,7 @@ export default defineComponent({
         },
         stroke: {
           curve: 'smooth',
+          width: 2,
         },
         marks: {
           size: 0,
