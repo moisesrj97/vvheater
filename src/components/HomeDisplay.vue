@@ -1,7 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="home">
     <div v-if="loading">
-      <h2>{{ weatherData.location }}({{ weatherData.country }})</h2>
+      <h2 class="home__location">
+        {{ weatherData.location }} ({{ weatherData.country }})
+      </h2>
       <WeatherGraphic
         :chartData="chartData"
         v-on:emitTimeMarker="setTimeMarker"
@@ -118,20 +120,19 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+<style lang="scss">
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 90%;
+  margin: 30px 0;
+  &__location {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 }
 </style>
