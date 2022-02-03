@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="loading">
+    <div v-if="loading" class="home__container">
       <h2 class="home__location">
         {{ weatherData.location }} ({{ weatherData.country }})
       </h2>
@@ -11,7 +11,7 @@
       <BasicDisplay :tempData="tempData" />
       <NextWeekDisplay :nextWeekPrediction="weatherData.nextWeekPrediction" />
     </div>
-    <div v-else><p>Loading</p></div>
+    <div v-else class="home__container"><p>Loading</p></div>
   </div>
 </template>
 
@@ -128,6 +128,9 @@ export default defineComponent({
   min-height: 100vh;
   width: 90%;
   margin: 30px 0;
+  &__container {
+    width: 100%;
+  }
   &__location {
     font-size: 1.5rem;
     font-weight: 400;
