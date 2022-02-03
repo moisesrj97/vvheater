@@ -122,8 +122,10 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
   &__current {
-    font-size: 4rem;
+    font-size: 4.2rem;
     font-weight: 400;
     margin: 0;
   }
