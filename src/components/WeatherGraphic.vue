@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <apexchart
-      width="100%"
-      type="line"
-      ref="weatherChart"
-      :options="options"
-      :series="series"
-      @markerClick="(a, b, c) => click(a, b, c, this)"
-    ></apexchart>
-  </div>
+  <apexchart
+    width="100%"
+    type="line"
+    ref="weatherChart"
+    :options="options"
+    :series="series"
+    @markerClick="(a, b, c) => click(a, b, c, this)"
+  ></apexchart>
 </template>
 
 <script lang="ts">

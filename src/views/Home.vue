@@ -1,8 +1,6 @@
 <template>
-  <div class="home">
-    <SearchBar v-on:emitInput="setLocation" />
-    <HomeDisplay :location-name="locationName" />
-  </div>
+  <SearchBar v-on:emitInput="setLocation" />
+  <HomeDisplay :location-name="locationName" />
 </template>
 
 <script lang="ts">
