@@ -87,7 +87,19 @@
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
     "transform": {
       "^.+\\.vue$": "vue-jest"
-    }
+    },
+    "collectCoverageFrom": [
+      "**/*.{js,vue,ts}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/e2e/**",
+      "!**/registerServiceWorker.ts",
+      "!**/coverage/**",
+      "!**/src/main.ts",
+      "!**/dist/**",
+      "!**/babel.**",
+      "!**/firebase**"
+    ]
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
