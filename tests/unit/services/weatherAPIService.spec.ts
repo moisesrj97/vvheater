@@ -1,6 +1,6 @@
 /* eslint-disable -curly-newline */
 import axios from 'axios';
-import getWeather from '../../src/services/weatherAPIService';
+import getWeather from '@/services/weatherAPIService';
 
 const mockedReturnBasic = {
   coord: { lon: -5.9761, lat: 37.3824 },
