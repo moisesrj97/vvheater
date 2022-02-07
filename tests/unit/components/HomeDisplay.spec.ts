@@ -830,4 +830,49 @@ describe('Given HomeDisplay.vue', () => {
       });
     });
   });
+  describe('When empty location is passed as prop', () => {
+    test('Screen should show loading', async () => {
+      const locationName = '';
+
+      const wrapper = shallowMount(HomeDisplay, {
+        props: { locationName },
+      });
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.text()).toMatch('Loading');
+      });
+    });
+  });
+  describe('When locationName changes', () => {
+    test('this.weatherData should change', async () => {
+      const locationName = 'Seville (ES)';
+
+      const wrapper = shallowMount(HomeDisplay, {
+        props: { locationName },
+      });
+
+      const previousWeatherData = wrapper.vm.weatherData;
+      wrapper.setProps({ locationName: 'Madrid (ES)' });
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.vm.weatherData).not.toEqual(previousWeatherData);
+      });
+    });
+  });
+  describe('When timeMarker changes to 0', () => {
+    test('this.tempData should change', async () => {
+      const locationName = 'Seville (ES)';
+
+      const wrapper = shallowMount(HomeDisplay, {
+        props: { locationName },
+      });
+      wrapper.vm.setTimeMarker(1);
+      wrapper.vm.$nextTick(() => {
+        const previousTempData = wrapper.vm.tempData;
+        wrapper.vm.setTimeMarker(0);
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.vm.tempData).not.toEqual(previousTempData);
+        });
+      });
+    });
+  });
 });
