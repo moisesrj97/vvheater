@@ -7,27 +7,49 @@ jest.mock('@/services/weatherAPIService.ts', () => {
   };
 });
 
-const geolocation = {
-  getCurrentPosition: jest.fn(() => {
-    return Promise.resolve({
-      coords: {
-        latitude: 41.38,
-        longitude: 2.17,
-      },
-    });
-  }),
+const mockGeolocationWithoutError = {
+  getCurrentPosition: jest.fn().mockImplementationOnce((success, error) =>
+    Promise.resolve(
+      success({
+        coords: {
+          latitude: 41.3851,
+          longitude: 2.1734,
+        },
+      })
+    )
+  ),
+  watchPosition: jest.fn(),
 };
 
-Object.defineProperty(global.navigator, 'geolocation', {
-  value: geolocation,
-});
+const mockGeolocationWithError = {
+  getCurrentPosition: jest.fn().mockImplementationOnce((success, error) =>
+    Promise.resolve(
+      error({
+        code: 1,
+        message: 'Geolocation error',
+      })
+    )
+  ),
+  watchPosition: jest.fn(),
+};
 
 describe('Given Home.vue', () => {
-  describe('When it is rendered', () => {
+  describe('When it is rendered with location', () => {
     it('It should be rendered', async () => {
-      const wrapper = shallowMount(Home);
-
-      expect(wrapper).toBeTruthy();
+      Object.defineProperty(navigator, 'geolocation', {
+        value: mockGeolocationWithoutError,
+        configurable: true,
+      });
+      expect(() => shallowMount(Home)).not.toThrow();
+    });
+  });
+  describe('When it is rendered', () => {
+    it('It should be rendered without location', async () => {
+      Object.defineProperty(navigator, 'geolocation', {
+        value: mockGeolocationWithError,
+        configurable: true,
+      });
+      expect(() => shallowMount(Home)).toThrow('Geolocation');
     });
   });
 });
