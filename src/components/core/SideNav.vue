@@ -1,10 +1,10 @@
 <template>
-  <div :class="isOpen ? 'side-nav side-nav--open' : 'side-nav'">
+  <div :class="isSideNavOpen ? 'side-nav side-nav--open' : 'side-nav'">
     <img
       src="@/assets/close-icon.png"
       alt="Close icon"
       class="side-nav__close-icon"
-      @click="toggle"
+      @click="toggleSideNav"
     />
     <img
       src="https://en.gravatar.com/userimage/75266148/c238b26ec6e092f1103ac8bad3eebf55?size=200"
@@ -15,18 +15,15 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'SideNav',
-  data() {
-    return {
-      isOpen: true,
-    };
-  },
   methods: {
-    toggle() {
-      this.isOpen = !this.isOpen;
-    },
+    ...mapActions(['toggleSideNav']),
+  },
+  computed: {
+    ...mapGetters(['isSideNavOpen']),
   },
 });
 </script>
