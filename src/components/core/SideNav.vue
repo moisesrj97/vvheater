@@ -11,6 +11,19 @@
       alt="Profile picture"
       class="side-nav__profile-picture"
     />
+    <ul>
+      <li>Home</li>
+      <li>Favorites</li>
+    </ul>
+    <label for="units-select"
+      >Units:
+      <select id="units-select" class="side-nav__units-select">
+        <option value="metric">Metric</option>
+        <option value="imperial">Imperial</option>
+      </select>
+    </label>
+    <p>Login/Logout button</p>
+    <p>Logo</p>
   </div>
 </template>
 <script lang="ts">
@@ -38,9 +51,20 @@ export default defineComponent({
   z-index: 5;
   transform: translate(-100%, 0);
   transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
   &--open {
     transform: translate(0, 0);
     transition: all 0.3s ease-in-out;
+  }
+  &__close-icon {
+    align-self: end;
+    margin-top: 20px;
+    margin-right: 20px;
+    cursor: pointer;
   }
 }
 </style>
