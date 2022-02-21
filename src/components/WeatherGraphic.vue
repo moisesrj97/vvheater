@@ -22,13 +22,12 @@ export default defineComponent({
   },
   watch: {
     chartData() {
-      const chart: any = this.$refs.weatherChart;
-      chart.updateSeries([
+      this.series = [
         {
           name: 'temperature',
           data: this.chartData.nextTemps,
         },
-      ]);
+      ];
     },
   },
   data() {
