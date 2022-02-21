@@ -1,6 +1,18 @@
 <template>
+  <SideNav />
   <router-view />
 </template>
+
+<script>
+import SideNav from '@/components/core/SideNav.vue';
+
+export default {
+  name: 'App',
+  components: {
+    SideNav,
+  },
+};
+</script>
 
 <style lang="scss">
 body {
