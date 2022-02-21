@@ -1,5 +1,12 @@
 <template>
   <form @submit.prevent="emitLocation" class="location-form">
+    <img
+      src="@/assets/hamburger-icon.png"
+      alt="open menu icon"
+      class="location-form__open-menu-icon"
+      @click="toggleSideNav"
+    />
+
     <input
       v-model="inputValue"
       placeholder="Enter some location..."
@@ -12,6 +19,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'SearchBar',
@@ -24,6 +32,7 @@ export default defineComponent({
     emitLocation() {
       this.$emit('emitInput', this.inputValue);
     },
+    ...mapActions(['toggleSideNav']),
   },
 });
 </script>
@@ -33,6 +42,11 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   width: 95%;
+  &__open-menu-icon {
+    width: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
   &__input {
     width: 100%;
     padding: 0.5rem;
